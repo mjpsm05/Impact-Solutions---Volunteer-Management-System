@@ -26,6 +26,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/Views/Opportunity/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3Bwb3J0dW5pdHkvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/Views/Opportunity/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3Bwb3J0dW5pdHkvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/Views/Opportunity/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3Bwb3J0dW5pdHkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/Views/Opportunity/Matches.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3Bwb3J0dW5pdHkvTWF0Y2hlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
