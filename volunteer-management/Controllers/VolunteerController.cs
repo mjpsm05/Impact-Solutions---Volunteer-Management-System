@@ -10,18 +10,18 @@ namespace volunteer_management.Controllers;
 public class VolunteerController : Controller
 {
 
-    private readonly ApplicationDbContext _db;
+    //private readonly ApplicationDbContext _db;
     
     // Add database access
-    public VolunteerController(ApplicationDbContext db)
+    /*public VolunteerController(ApplicationDbContext db)
     {
         _db = db;
-    }
+    }*/
     
     // Default view
     public IActionResult Index()
     {
-        List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
+        //List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
         return View();
     }
     
