@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{3302B342-CF45-4892-978A-00AE7991FA43}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.volunteer-management PreferredExecutionTarget="/Applications/Ecosia Browser.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="volunteer-management" expanded="True" selected="True" />
+          <Node name="volunteer-management" expanded="True">
+            <Node name="volunteer-management" expanded="True">
+              <Node name="ConnectedServicesFolder" selected="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
@@ -15,4 +16,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.volunteer-management PreferredExecutionTarget="/Applications/Ecosia Browser.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
