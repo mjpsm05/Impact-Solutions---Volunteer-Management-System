@@ -1,22 +1,209 @@
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
+  font-size: 16px;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F4F6F8;
+  color: #1F2933;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===================================
+   Main Layout
+=================================== */
+
+.page-content {
+  flex: 1;
+  padding: 3rem 0;
+}
+
+/* ===================================
+   Navbar
+=================================== */
+
+.app-navbar {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #D9E2EC;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  padding: .85rem 0;
+}
+
+.app-navbar .navbar-brand {
+  color: #1F2933;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-navbar .navbar-brand:hover {
+  color: #176B87;
+}
+
+.app-navbar .nav-link {
+  color: #52606D;
+  font-weight: 500;
+  margin-left: .75rem;
+}
+
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link:focus {
+  color: #176B87;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #52606D;
+  font-weight: 500;
+  margin-left: .75rem;
+}
+
+.logout-button:hover {
+  color: #176B87;
+}
+
+.navbar-toggler {
+  border-color: #D9E2EC;
+}
+
+/* ===================================
+   Dashboard Header
+=================================== */
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: .75rem;
+}
+
+.dashboard-header p {
+  font-size: 1.05rem;
+  color: #52606D;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===================================
+   Dashboard Cards
+=================================== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #FFFFFF;
+  border: 1px solid #D9E2EC;
+  border-radius: 14px;
+
+  padding: 2rem;
+
+  min-height: 320px;
+
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-card-content {
+  flex: 1;
+}
+
+.dashboard-card h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.dashboard-card p {
+  color: #52606D;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* ===================================
+   Buttons
+=================================== */
+
+.app-button {
+  display: block;
+  width: 100%;
+
+  padding: .85rem 1rem;
+
+  background-color: #176B87;
+  color: #FFFFFF;
+
+  border: none;
+  border-radius: 8px;
+
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
+  transition: background-color .2s ease;
+}
+
+.app-button:hover,
+.app-button:focus {
+  background-color: #12546B;
+  color: #FFFFFF;
+}
+
+/* ===================================
+   Footer
+=================================== */
+
+.app-footer {
+  margin-top: auto;
+
+  background-color: #FFFFFF;
+  border-top: 1px solid #D9E2EC;
+
+  color: #52606D;
+
+  text-align: center;
+
+  padding: 1rem 0;
+}
+
+/* ===================================
+   Responsive
+=================================== */
+
+@media (max-width: 768px) {
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    min-height: auto;
+  }
+
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.5rem;
+  }
 }

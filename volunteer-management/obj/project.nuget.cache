@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "SKqs9gKLysA=",
+  "dgSpecHash": "5vvubrPwnuY=",
   "success": true,
-  "projectFilePath": "/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/volunteer-management.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/gen/RiderProjects/Impact-Solutions---Volunteer-Management-System/volunteer-management/volunteer-management.csproj",
+  "expectedPackageFiles": [
+    "/Users/gen/.nuget/packages/microsoft.netcore.app.ref/8.0.24/microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "/Users/gen/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.24/microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512",
+    "/Users/gen/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.24/microsoft.netcore.app.host.osx-arm64.8.0.24.nupkg.sha512"
+  ],
   "logs": []
 }
