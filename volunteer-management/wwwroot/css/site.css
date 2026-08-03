@@ -207,3 +207,36 @@ body {
     font-size: 1.5rem;
   }
 }
+
+/* ===================================
+   Login Page
+=================================== */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 14px;
+  border: 1px solid #D9E2EC;
+  box-shadow: 0 8px 24px rgba(15,23,42,.08);
+}
+
+.login-card h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: .25rem;
+}
+
+.login-card h2 {
+  text-align: center;
+  color: #52606D;
+  margin-bottom: 2rem;
+}

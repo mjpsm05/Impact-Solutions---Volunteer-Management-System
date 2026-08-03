@@ -22,6 +22,11 @@ public class HomeController : Controller
     {
         return View();
     }
+    
+    public IActionResult Login()
+    {
+        return View("~/Views/Account/Login.cshtml");
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
