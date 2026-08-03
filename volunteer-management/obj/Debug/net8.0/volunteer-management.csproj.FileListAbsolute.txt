@@ -28,3 +28,4 @@
 /Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/obj/Debug/net8.0/volunteer-management.pdb
 /Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/obj/Debug/net8.0/volunteer-management.genruntimeconfig.cache
 /Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/obj/Debug/net8.0/ref/volunteer-management.dll
+/Users/c.robinson/Downloads/GitHub/Impact-Solutions---Volunteer-Management-System/volunteer-management/obj/Debug/net8.0/volunteer-management.sourcelink.json
