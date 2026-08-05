@@ -1,3 +1,5 @@
+using System;
+
 namespace volunteer_management.Models;
 
 public class Opportunity
