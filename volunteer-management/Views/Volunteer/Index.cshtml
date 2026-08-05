@@ -1,1 +1,59 @@
-<h2>Index</h2>
+@using volunteer_management.Data.Models
+@model IEnumerable<Volunteer>
+
+@{
+    ViewData["Title"] = "Volunteer Profiles";
+}
+
+<section class="volunteer-header">
+    <h1>Volunteer Profiles</h1>
+</section>
+
+<section class="volunteer-grid"
+         aria-label="Management options">
+
+    <article class="volunteer-card">
+        <div class="volunteer-card-content">
+            @{
+                foreach (var volunteer in Model)
+                {
+                    <p>volunteer.Name</p>
+                }
+            }
+        </div>
+    </article>
+
+    <article class="volunteer-card">
+        <div class="volunteer-card-content">
+            <a asp-controller="Volunteer"
+               asp-action="Details"
+               class="btn app-button">
+                Change Volunteer Filter
+            </a>
+        
+            <a asp-controller="Volunteer"
+               asp-action="Details"
+               class="btn app-button">
+                Search Volunteers
+            </a>
+        
+            <a asp-controller="Volunteer"
+               asp-action="Details"
+               class="btn app-button">
+                View Volunteer Opportunity Matches
+            </a>
+        
+            <a asp-controller="Volunteer"
+               asp-action="Edit"
+               class="btn app-button">
+                Edit Volunteer
+            </a>
+        
+            <a asp-controller="Volunteer"
+               asp-action="Add"
+               class="btn app-button">
+                Add New Volunteer
+            </a>
+        </div>
+    </article>
+</section>
