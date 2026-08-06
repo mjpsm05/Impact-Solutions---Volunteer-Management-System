@@ -8,8 +8,8 @@
     <h1>Add New Volunteer</h1>
 </section>
 
-<section class="">
-    <form asp-controller="Volunteer" asp-action="Create" method="post">
+<section class="add-volunteer-form">
+    <form asp-controller="Volunteer" asp-action="Add" method="post">
 
         <!-- Identification -->
         <div class="mb-3">
@@ -261,9 +261,16 @@
             <span asp-validation-for="Status" class="text-danger"></span>
         </div><br>
         
-        <button type="submit" class="app-button">
-            Save Volunteer
-        </button>
+        <div class="button-group">
+            <a asp-action="Index" class="cancel-button">
+                Cancel
+            </a>
+
+            <button type="submit" class="app-button">
+                Save Volunteer
+            </button> 
+        </div>
+        
 
     </form> 
 </section>
