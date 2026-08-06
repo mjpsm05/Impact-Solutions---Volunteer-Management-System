@@ -1,4 +1,3 @@
-@using volunteer_management.Data.Models
 @model IEnumerable<Volunteer>
 
 @{
@@ -11,44 +10,50 @@
 
 <section class="volunteer-grid"
          aria-label="Management options">
-
-    <article class="volunteer-card">
+    
+    <article class="volunteer-card-left">
         <div class="volunteer-card-content">
-            @{
-                foreach (var volunteer in Model)
-                {
-                    <p>volunteer.Name</p>
+            <p>
+            @* Needs list to be returned
+                @{
+                    @foreach (var volunteer in Model)
+                    {
+                        <div>
+                            <p>@volunteer.FirstName @volunteer.LastName</p>
+                        </div>
+                    }
                 }
-            }
+                *@
+            </p>
         </div>
     </article>
-
-    <article class="volunteer-card">
+    
+    <article class="volunteer-card-right">
         <div class="volunteer-card-content">
             <a asp-controller="Volunteer"
                asp-action="Details"
                class="btn app-button">
                 Change Volunteer Filter
             </a>
-        
+
             <a asp-controller="Volunteer"
                asp-action="Details"
                class="btn app-button">
                 Search Volunteers
             </a>
-        
+
             <a asp-controller="Volunteer"
                asp-action="Details"
                class="btn app-button">
                 View Volunteer Opportunity Matches
             </a>
-        
+
             <a asp-controller="Volunteer"
                asp-action="Edit"
                class="btn app-button">
                 Edit Volunteer
             </a>
-        
+
             <a asp-controller="Volunteer"
                asp-action="Add"
                class="btn app-button">
