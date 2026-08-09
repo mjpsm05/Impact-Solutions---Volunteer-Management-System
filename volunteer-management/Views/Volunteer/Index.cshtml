@@ -19,17 +19,17 @@
     </thead>
     
     <tbody>
-    @foreach (var obj in Model)
+    @foreach (var obj in Model.OrderBy(u=>u.Id))
     {
         <tr>
             <td>
-                Id
+                @obj.Id
             </td>
             <td>
-                FirstName
+                @obj.FirstName
             </td>
             <td>
-                LastName
+                @obj.LastName
             </td>
         </tr>
     }
