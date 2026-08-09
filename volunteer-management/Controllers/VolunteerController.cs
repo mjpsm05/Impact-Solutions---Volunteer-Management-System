@@ -29,8 +29,8 @@ public class VolunteerController : Controller
         return View();
     }
     
-    // Add new volunteer
-    public IActionResult Add()
+    // Create new volunteer
+    public IActionResult Create()
     {
         return View();
     }
