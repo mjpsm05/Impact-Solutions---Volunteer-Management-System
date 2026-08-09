@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Opportunities";
+}
+
+@model List<Opportunity> 
+<div>
+    <h1>Opportunities</h1>
+    <br />
+    <table>
+        <thead>
+        <tr>
+            ID
+        </tr>
+        <tr>
+            Name
+        </tr>
+        <tr>
+            Description
+        </tr>
+        <tr>
+            Center
+        </tr>
+        <tr>
+            Start Date
+        </tr>
+        <tr>
+            End Date
+        </tr>
+        <tr>
+            Created
+        </tr>
+        <tr>
+            Active
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var opportunity in Model )
+            {
+                <tr>
+                    <td>
+                        @opportunity.Id
+                    </td>
+                    <td>
+                        @opportunity.Name
+                    </td>
+                    <td>
+                        @opportunity.Description
+                    </td>
+                    <td>
+                        @opportunity.Center
+                    </td>
+                    <td>
+                        @opportunity.StartDate
+                    </td>
+                    <td>
+                        @opportunity.EndDate
+                    </td>
+                    <td>
+                        @opportunity.IsActive
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
