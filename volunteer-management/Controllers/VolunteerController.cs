@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using volunteer_management.Data;
 using volunteer_management.Models;
 
@@ -22,7 +20,7 @@ public class VolunteerController : Controller
     public IActionResult Index()
     {
         List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
-        return View();
+        return View(objVolunteerList);
     }
     
     // Edit volunteer
@@ -31,8 +29,8 @@ public class VolunteerController : Controller
         return View();
     }
     
-    // Add new volunteer
-    public IActionResult Add()
+    // Create new volunteer
+    public IActionResult Create()
     {
         return View();
     }
