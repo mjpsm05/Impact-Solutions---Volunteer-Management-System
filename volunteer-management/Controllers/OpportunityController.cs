@@ -39,3 +39,4 @@ public class OpportunityController(ApplicationDbContext context, ILogger<Opportu
         return View();
     }
 }
+// "Project AI Use" Item 1 -  This code was written in collaboration with OpenAI. (2025). ChatGPT [Large language model]. https://chatgpt.com/
