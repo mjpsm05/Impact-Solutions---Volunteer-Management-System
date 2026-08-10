@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using volunteer_management.Data;
-using volunteer_management.Models;
-
 
 namespace volunteer_management.Controllers;
 
@@ -20,7 +17,7 @@ public class VolunteerController : Controller
     public IActionResult Index()
     {
         List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
-        return View(objVolunteerList);
+        return View();
     }
     
     // Edit volunteer
@@ -29,8 +26,8 @@ public class VolunteerController : Controller
         return View();
     }
     
-    // Create new volunteer
-    public IActionResult Create()
+    // Add new volunteer
+    public IActionResult Add()
     {
         return View();
     }

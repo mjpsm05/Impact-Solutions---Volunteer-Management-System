@@ -1,9 +1,0 @@
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-bin/
-obj/
-.vs/
-.idea/
-*.user
