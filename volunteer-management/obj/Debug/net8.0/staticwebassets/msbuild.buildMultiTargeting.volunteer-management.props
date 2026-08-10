@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/volunteer-management.props" />
-</Project>
