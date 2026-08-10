@@ -221,9 +221,9 @@ body {
 
 .login-card {
   width: 100%;
-  max-width: 450px;
+  max-width: 650px;
   background: white;
-  padding: 2.5rem;
+  padding: 4rem 2.5rem;
   border-radius: 14px;
   border: 1px solid #D9E2EC;
   box-shadow: 0 8px 24px rgba(15,23,42,.08);
@@ -233,6 +233,7 @@ body {
   text-align: center;
   font-size: 2rem;
   margin-bottom: .25rem;
+  white-space: nowrap;
 }
 
 .login-card h2 {
@@ -240,3 +241,365 @@ body {
   color: #52606D;
   margin-bottom: 2rem;
 }
+
+.login-card .app-button {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+}
+
+.form-group {
+  width: 70%;
+  margin: 0 auto 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  text-align: left;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+/* ===================================
+   Volunteer Index Page
+ =================================== */
+/* ===================================
+   Volunteer Index Header
+=================================== */
+
+.volunteer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.volunteer-header h1 {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.volunteer-header .app-button {
+  width: auto;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* ===================================
+   Volunteer Index Filter and Search
+=================================== */
+.volunteer-controls {
+  display: flex;
+  align-items: center;
+  gap: 350px; 
+  margin-bottom: 24px;
+}
+
+.volunteer-controls select {
+  padding: 8px 12px;
+}
+
+.search-controls input {
+  padding: 8px 12px;
+  width: 300px;
+}
+
+.filter-controls,
+.search-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-controls .app-button,
+.search-controls .app-button {
+  width: 110px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+/* ===================================
+   Volunteer Index Table
+=================================== */
+.volunteer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.volunteer-table th,
+.volunteer-table td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.volunteer-table th {
+  font-weight: 600;
+}
+
+.volunteer-table tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.volunteer-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* ===================================
+   Volunteer Index Actions
+=================================== */
+.volunteer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.volunteer-actions a {
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+/* ===================================
+   Volunteer Index Add Button
+=================================== */
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.button-group > * {
+  flex: 1;
+}
+
+.app-button,
+.cancel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.cancel-button {
+  background: #DEDEDE;
+}
+
+/* ===================================
+   Volunteer Details Page
+=================================== */
+/* ===================================
+   Volunteer Details Table
+=================================== */
+.volunteer-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.volunteer-details-table th,
+.volunteer-details-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.volunteer-details-table th {
+  font-weight: 600;
+}
+
+.volunteer-details-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* ===================================
+   Volunteer Details Back Button
+=================================== */
+.back-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  background: #DEDEDE;
+}
+
+/* ===================================
+   Opportunity Opportunities Page
+ =================================== */
+/* ===================================
+   Opportunity Opportunities Header
+=================================== */
+
+.opportunity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.opportunity-header h1 {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.opportunity-header .app-button {
+  width: auto;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* =============================================
+   Opportunity Opportunities Filter and Search
+============================================== */
+.opportunity-controls {
+  display: flex;
+  align-items: center;
+  gap: 350px;
+  margin-bottom: 24px;
+}
+
+.opportunity-controls select {
+  padding: 8px 12px;
+}
+
+.search-controls input {
+  padding: 8px 12px;
+  width: 300px;
+}
+
+.filter-controls,
+.search-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-controls .app-button,
+.search-controls .app-button {
+  width: 110px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+/* ===================================
+   Opportunity Opportunities Table
+=================================== */
+.opportunity-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.opportunity-table th,
+.opportunity-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.opportunity-table th {
+  font-weight: 600;
+}
+
+.opportunity-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* ===================================
+   Opportunity Opportunities Actions
+=================================== */
+.opportunity-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.opportunity-actions a {
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+/* ===================================
+   Opportunity Opportunities Add Button
+=================================== */
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.button-group > * {
+  flex: 1;
+}
+
+.app-button,
+.cancel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.cancel-button {
+  background: #DEDEDE;
+}
+
+/* ===================================
+   Opportunity Details Page
+=================================== */
+/* ===================================
+   Opportunity Details Table
+=================================== */
+.opportunity-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.opportunity-details-table th,
+.opportunity-details-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border: none;
+}
+
+.opportunity-details-table th {
+  font-weight: 600;
+}
+
+.opportunity-details-table tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.opportunity-details-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* ===================================
+   Opportunity Details Back Button
+=================================== */
+.back-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  background: #DEDEDE;
+}
+

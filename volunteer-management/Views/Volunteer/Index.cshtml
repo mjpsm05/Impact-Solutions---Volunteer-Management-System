@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @*Obj passed from controller*@
 @model List<Volunteer> 
 
@@ -46,3 +47,108 @@
     }
     </tbody>
 </table>
+=======
+@model IEnumerable<Volunteer> 
+
+@{
+    ViewData["Title"] = "Volunteer Profiles";
+}
+
+<section class="volunteer-header">
+        <h1>Volunteer Profiles</h1>
+        
+        <a asp-controller="Volunteer"
+           asp-action="Add"
+           class="btn app-button">
+            Add New Volunteer
+        </a>
+    </section>
+    
+<section class="volunteer-content">
+
+    <form asp-action="Index" method="get" class="volunteer-controls">
+
+        <div class ="filter-controls">
+        <select name="filter">
+            <option value="ApprovedPending">Approved/Pending Approval</option>
+            <option value="Approved">Approved</option>
+            <option value="Pending">Pending Approval </option>
+            <option value="Disapproved">Disapproved</option>
+            <option value="Inactive">Inactive</option>
+            <option value="All" selected>All</option>
+        </select>
+        
+        <button type="submit">
+            Apply Filter
+        </button>
+        </div>
+                
+        <div class="search-controls">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search Volunteers" />
+
+                    <button type="submit">
+                        Search
+                    </button>
+                    </div>
+                
+            </form>
+    <div class="volunteer-list">
+        <table class="volunteer-table">
+
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var volunteer in Model)
+                {
+                    <tr>
+                        <td>
+                            <p>@volunteer.FirstName @volunteer.LastName</p>
+                        </td>
+
+                        <td>
+                            <p>@volunteer.Status</p>
+                        </td>
+
+
+                        <td class="volunteer-actions">
+                            <a asp-action="Details"
+                               asp-route-id="@volunteer.Id">
+                                View Matches
+                            </a>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@volunteer.Id">
+                                Edit
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+                {
+                    <tr>
+                        <td colspan="3" class="no-results">
+                        No volunteers found.
+                        </td>
+                        </tr>
+                }
+            
+            </tbody>
+        </table>
+    </div>
+</section>
+>>>>>>> feature/shared-ui
