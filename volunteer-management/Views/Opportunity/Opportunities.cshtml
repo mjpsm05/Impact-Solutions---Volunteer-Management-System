@@ -19,28 +19,28 @@
     <form asp-action="Opportunities" method="get" class="opportunity-controls">
 
         <div class ="filter-controls">
-        <select name="filter">
-            <option value="MostRecent" selected>Most Recent (60 days)</option>
-            <option value="ByCenter" >By Center</option>
-        </select>
+            <select name="filter">
+                <option value="MostRecent" selected>Most Recent (60 days)</option>
+                <option value="ByCenter" >By Center</option>
+            </select>
         
-        <button type="submit">
-            Apply Filter
-        </button>
+            <button type="submit">
+                Apply Filter
+            </button>
         </div>
                 
         <div class="search-controls">
-                    <input
-                        type="text"
-                        name="search"
-                        placeholder="Search Opportunities" />
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Opportunities" />
 
-                    <button type="submit">
-                        Search
-                    </button>
-                    </div>
+            <button type="submit">
+                Search
+            </button>
+        </div>
                 
-            </form>
+    </form>
     <div class="opportunity-list">
         <table class="opportunity-table">
 
@@ -116,13 +116,13 @@
                 }
             }
             else
-                {
-                    <tr>
-                        <td colspan="3" class="no-results">
+            {
+                <tr>
+                    <td colspan="3" class="no-results">
                         No opportunity found.
-                        </td>
-                        </tr>
-                }
+                    </td>
+                </tr>
+            }
             
             </tbody>
         </table>
