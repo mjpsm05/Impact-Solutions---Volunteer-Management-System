@@ -5,60 +5,90 @@
 }
 
 <section class="volunteer-header">
-    <h1>Volunteer Profiles</h1>
-</section>
-
-<section class="volunteer-grid"
-         aria-label="Management options">
+        <h1>Volunteer Profiles</h1>
+        
+        <a asp-controller="Volunteer"
+           asp-action="Add"
+           class="btn app-button">
+            Add New Volunteer
+        </a>
+    </section>
     
-    <article class="volunteer-card-left">
-        <div class="volunteer-card-content">
-            <p>
-            @* Needs list to be returned
-                @{
-                    @foreach (var volunteer in Model)
-                    {
-                        <div>
-                            <p>@volunteer.FirstName @volunteer.LastName</p>
-                        </div>
-                    }
-                }
-                *@
-            </p>
+<section class="volunteer-content">
+
+    <form asp-action="Index" method="get" class="volunteer-controls">
+
+        <div class ="filter-controls">
+        <select name="filter">
+            <option value="ApprovedPending">Approved/Pending Approval</option>
+            <option value="Approved">Approved</option>
+            <option value="Pending">Pending Approval </option>
+            <option value="Disapproved">Disapproved</option>
+            <option value="Inactive">Inactive</option>
+            <option value="All" selected>All</option>
+        </select>
+        
+        <button type="submit">
+            Apply Filter
+        </button>
         </div>
-    </article>
-    
-    <article class="volunteer-card-right">
-        <div class="volunteer-card-content">
-            <a asp-controller="Volunteer"
-               asp-action="Details"
-               class="btn app-button">
-                Change Volunteer Filter
-            </a>
+                
+        <div class="search-controls">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search Volunteers" />
 
-            <a asp-controller="Volunteer"
-               asp-action="Details"
-               class="btn app-button">
-                Search Volunteers
-            </a>
+                    <button type="submit">
+                        Search
+                    </button>
+                    </div>
+                
+            </form>
+    <div class="volunteer-list">
+        <table class="volunteer-table">
 
-            <a asp-controller="Volunteer"
-               asp-action="Details"
-               class="btn app-button">
-                View Volunteer Opportunity Matches
-            </a>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
 
-            <a asp-controller="Volunteer"
-               asp-action="Edit"
-               class="btn app-button">
-                Edit Volunteer
-            </a>
-
-            <a asp-controller="Volunteer"
-               asp-action="Add"
-               class="btn app-button">
-                Add New Volunteer
-            </a>
-        </div>
-    </article>
+            <tbody>
+            
+            @*  @{ 
+                            @foreach (var volunteer in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <p>@volunteer.FirstName @volunteer.LastName</p>
+                                    </td>
+                                        
+                                    <td>
+                                        <p>@volunteer.Status</p>
+                                    </td>
+                                    
+                                    
+                                <td class="volunteer-actions">
+                                        <a asp-action="Details"
+                                            asp-route-id="@volunteer.Id>
+                                            View Matches
+                                        </a>
+                                            
+                                         <a asp-action="Edit"
+                                            asp-route-id="@volunteer.Id>
+                                            Edit
+                                         </a>
+                                    </td>
+                                    
+                                </tr>
+                            }
+                            } 
+                            *@
+                        
+            </tbody>
+        </table>
+    </div>
 </section>
