@@ -30,7 +30,7 @@ public class VolunteerController : Controller
     }
     
     // Create new volunteer
-    public IActionResult Create()
+    public IActionResult Add()
     {
         return View();
     }
