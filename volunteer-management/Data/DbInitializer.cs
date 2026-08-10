@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using volunteer_management.Models;
 
@@ -5,11 +6,12 @@ namespace volunteer_management.Data;
 
 public class DbInitializer
 {
-    public static async Task InitializeAsync(ApplicationDbContext context)
+    public static async Task InitializeAsync(ApplicationDbContext context, UserManager<IdentityUser> userManager)
     {
         // Apply any migrations that have not yet been applied.
         await context.Database.MigrateAsync();
-
+        
+        await SeedAdminAsync(userManager);
         await SeedVolunteersAsync(context);
         await SeedOpportunitiesAsync(context);
         await SeedMatchesAsync(context);
@@ -316,6 +318,40 @@ public class DbInitializer
         {
             await context.Matches.AddRangeAsync(matches);
             await context.SaveChangesAsync();
+        }
+        
+    }
+    
+    private static async Task SeedAdminAsync(
+        UserManager<IdentityUser> userManager)
+    {
+        const string username = "admin";
+        const string password = "Admin123!";
+
+        var existingAdmin =
+            await userManager.FindByNameAsync(username);
+
+        if (existingAdmin != null)
+        {
+            return;
+        }
+
+        var admin = new IdentityUser
+        {
+            UserName = username
+        };
+
+        var result =
+            await userManager.CreateAsync(admin, password);
+
+        if (!result.Succeeded)
+        {
+            var errors = string.Join(
+                ", ",
+                result.Errors.Select(e => e.Description));
+
+            throw new InvalidOperationException(
+                $"Could not create administrator: {errors}");
         }
     }
 }
