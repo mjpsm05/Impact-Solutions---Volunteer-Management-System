@@ -31,11 +31,16 @@
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         
-       <!-- Add back Password -->
-    
-        
-        
-        <br>
+        <div>
+            <label asp-for="Password">Password</label>
+
+            <input asp-for="Password"
+                   type="password"
+                   class="form-control" />
+
+            <span asp-validation-for="Password"
+                  class="text-danger"></span>
+        </div><br>
         
         <!-- Volunteer Preferences -->
         <div class="mb-3">

@@ -1,15 +1,17 @@
 @model Opportunity
 
 @{
-    ViewData["Title"] = "Create Opportunity";
+    ViewData["Title"] = "Edit Opportunity";
 }
 
-<section class="create-opportunity-header">
-    <h1>Create Opportunity</h1>
+<section class="edit-opportunity-header">
+    <h1>Edit Opportunity</h1>
 </section>
 
-<section class="create-opportunity-form">
-    <form asp-controller="Opportunity" asp-action="Create" method="post">
+<section class="edit-opportunity-form">
+    <form asp-controller="Opportunity" asp-action="Edit" method="post">
+        
+        <input type="hidden" asp-for="Id" />
         
         <div class="mb-3">
             <label asp-for="Name"></label>

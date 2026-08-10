@@ -26,18 +26,23 @@
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div><br>
 
-        <!-- Account Information -->
-        <div class="mb-3">
-            <label asp-for="Username"></label>
-            <input asp-for="Username" class="form-control"/>
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
+            <!-- Account Information -->
+            <div class="mb-3">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+        
+            <div>
+                <label asp-for="Password">Password</label>
 
-        <!-- Add back Password -->
+                <input asp-for="Password"
+                       type="password"
+                       class="form-control" />
 
-
-
-        <br>
+                <span asp-validation-for="Password"
+                      class="text-danger"></span>
+            </div><br>
 
         <!-- Volunteer Preferences -->
         <div class="mb-3">

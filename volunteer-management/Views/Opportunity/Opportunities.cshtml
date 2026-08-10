@@ -1,67 +1,130 @@
+@model IEnumerable<Opportunity> 
+
 @{
     ViewData["Title"] = "Opportunities";
 }
 
-@model List<Opportunity> 
-<div>
-    <h1>Opportunities</h1>
-    <br />
-    <table class="table">
-        <thead>
-        <tr>
-            ID
-        </tr>
-        <tr>
-            Name
-        </tr>
-        <tr>
-            Description
-        </tr>
-        <tr>
-            Center
-        </tr>
-        <tr>
-            Start Date
-        </tr>
-        <tr>
-            End Date
-        </tr>
-        <tr>
-            Created
-        </tr>
-        <tr>
-            Active
-        </tr>
-        </thead>
-        <tbody>
-        @{
-            foreach (var opportunity in Model )
+<section class="opportunity-header">
+        <h1>Opportunities</h1>
+        
+        <a asp-controller="Opportunity"
+           asp-action="Create"
+           class="btn app-button">
+            Add New Opportunity
+        </a>
+    </section>
+    
+<section class="opportunity-content">
+
+    <form asp-action="Opportunities" method="get" class="opportunity-controls">
+
+        <div class ="filter-controls">
+        <select name="filter">
+            <option value="MostRecent" selected>Most Recent (60 days)</option>
+            <option value="ByCenter" >By Center</option>
+        </select>
+        
+        <button type="submit">
+            Apply Filter
+        </button>
+        </div>
+                
+        <div class="search-controls">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search Opportunities" />
+
+                    <button type="submit">
+                        Search
+                    </button>
+                    </div>
+                
+            </form>
+    <div class="opportunity-list">
+        <table class="opportunity-table">
+
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Center</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Created</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            
+            @if (Model != null && Model.Any())
             {
-                <tr>
-                    <td>
-                        @opportunity.Id
-                    </td>
-                    <td>
-                        @opportunity.Name
-                    </td>
-                    <td>
-                        @opportunity.Description
-                    </td>
-                    <td>
-                        @opportunity.Center
-                    </td>
-                    <td>
-                        @opportunity.StartDate
-                    </td>
-                    <td>
-                        @opportunity.EndDate
-                    </td>
-                    <td>
-                        @opportunity.IsActive
-                    </td>
-                </tr>
+                @foreach (var opportunity in Model)
+                {
+                    <tr>
+                        <td>
+                            @opportunity.Name
+                        </td>
+                        
+                        <td>
+                            @opportunity.Description
+                        </td>
+                        
+                        <td>
+                            @opportunity.Center
+                        </td>
+                        
+                        <td>
+                            @opportunity.StartDate
+                        </td>
+                        
+                        <td>
+                            @opportunity.EndDate
+                        </td>
+                        
+                        <td>
+                            @opportunity.CreatedAt
+                        </td>
+                        
+                        <td>
+                            @opportunity.IsActive
+                        </td>
+
+
+
+                        <td class="opportunity-actions">
+                            <a asp-action="Detais"
+                               asp-route-id="@opportunity.Id">
+                                View Matches
+                            </a>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@opportunity.Id">
+                                Edit
+                            </a>
+                            
+                            <a asp-action="Delete"
+                               asp-route-id="@opportunity.Id"
+                               class="delete-button">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+                }
             }
-        }
-        </tbody>
-    </table>
-</div>
+            else
+                {
+                    <tr>
+                        <td colspan="3" class="no-results">
+                        No opportunity found.
+                        </td>
+                        </tr>
+                }
+            
+            </tbody>
+        </table>
+    </div>
+</section>

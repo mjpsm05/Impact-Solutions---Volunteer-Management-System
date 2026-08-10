@@ -1,6 +1,5 @@
 @model IEnumerable<Volunteer> 
 
-
 @{
     ViewData["Title"] = "Volunteer Profiles";
 }
@@ -54,41 +53,50 @@
                 <th>Name</th>
                 <th>Status</th>
                 <th>Actions</th>
+                <th></th>
             </tr>
             </thead>
 
             <tbody>
             
-             @{ 
-                            @foreach (var volunteer in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        <p>@volunteer.FirstName @volunteer.LastName</p>
-                                    </td>
-                                        
-                                    <td>
-                                        <p>@volunteer.Status</p>
-                                    </td>
-                                    
-                                    
-                                    <td class="volunteer-actions">
-                                        <a asp-action="Details"
-                                           asp-route-id="@volunteer.Id">
-                                                View Matches
-                                            </a>
-                                                
-                                             <a asp-action="Edit"
-                                               asp-route-id="@volunteer.Id">
-                                                Edit
-                                             </a>
-                                    </td>
-                                    
-                                </tr>
-                            }
-             } 
-                            
-                        
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var volunteer in Model)
+                {
+                    <tr>
+                        <td>
+                            <p>@volunteer.FirstName @volunteer.LastName</p>
+                        </td>
+
+                        <td>
+                            <p>@volunteer.Status</p>
+                        </td>
+
+
+                        <td class="volunteer-actions">
+                            <a asp-action="Details"
+                               asp-route-id="@volunteer.Id">
+                                View Matches
+                            </a>
+
+                            <a asp-action="Edit"
+                               asp-route-id="@volunteer.Id">
+                                Edit
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+                {
+                    <tr>
+                        <td colspan="3" class="no-results">
+                        No volunteers found.
+                        </td>
+                        </tr>
+                }
+            
             </tbody>
         </table>
     </div>
