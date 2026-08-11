@@ -75,6 +75,6 @@ public class VolunteerController : Controller
         ViewData["CurrentSearch"] = search;
 
         return View(objVolunteerList);
-    }
-
+    } // ^^^          End of AI-assisted code          ^^^
+      // "Project AI Use" Item 2 -  This code was written in collaboration with Anthropic. (2026). Claude [Large language model]. https://claude.ai/
 }
