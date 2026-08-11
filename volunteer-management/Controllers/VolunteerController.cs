@@ -25,9 +25,16 @@ public class VolunteerController : Controller
     }*/
     
     // Edit volunteer
-    public IActionResult Edit()
+    public IActionResult Edit(int id)
     {
-        return View();
+        Volunteer? volunteerFromDb = _db.Volunteers.FirstOrDefault(v => v.Id == id);
+
+        if (volunteerFromDb == null)
+        {
+            return NotFound();
+        }
+        
+        return View(volunteerFromDb);
     }
     
     // Create new volunteer
