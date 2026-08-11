@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using volunteer_management.Models;
 
@@ -5,13 +6,15 @@ namespace volunteer_management.Data;
 
 public class DbInitializer
 {
-    public static async Task InitializeAsync(ApplicationDbContext context)
+    public static async Task InitializeAsync(ApplicationDbContext context, UserManager<IdentityUser> userManager)
     {
         // Apply any migrations that have not yet been applied.
         await context.Database.MigrateAsync();
-
+        
+        await SeedAdminAsync(userManager);
         await SeedVolunteersAsync(context);
         await SeedOpportunitiesAsync(context);
+        await SeedMatchesAsync(context);
     }
 
     private static async Task SeedVolunteersAsync(
@@ -260,4 +263,95 @@ public class DbInitializer
         await context.Opportunities.AddRangeAsync(opportunities);
         await context.SaveChangesAsync();
     } 
+    
+    private static async Task SeedMatchesAsync(
+        ApplicationDbContext context)
+    {
+        // Don't create duplicate test matches.
+        if (await context.Matches.AnyAsync())
+        {
+            return;
+        }
+
+        var volunteers = await context.Volunteers.ToListAsync();
+        var opportunities = await context.Opportunities.ToListAsync();
+
+        var matches = new List<Match>();
+
+        foreach (var volunteer in volunteers)
+        {
+            if (string.IsNullOrWhiteSpace(volunteer.PreferredCenters))
+            {
+                continue;
+            }
+
+            var preferredCenters = volunteer.PreferredCenters
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(center => center.Trim())
+                .ToList();
+
+            foreach (var opportunity in opportunities)
+            {
+                if (string.IsNullOrWhiteSpace(opportunity.Center))
+                {
+                    continue;
+                }
+
+                var centerMatches = preferredCenters.Any(center =>
+                    string.Equals(
+                        center,
+                        opportunity.Center,
+                        StringComparison.OrdinalIgnoreCase));
+
+                if (centerMatches)
+                {
+                    matches.Add(new Match
+                    {
+                        VolunteerId = volunteer.Id,
+                        OpportunityId = opportunity.Id
+                    });
+                }
+            }
+        }
+
+        if (matches.Count > 0)
+        {
+            await context.Matches.AddRangeAsync(matches);
+            await context.SaveChangesAsync();
+        }
+        
+    }
+    
+    private static async Task SeedAdminAsync(
+        UserManager<IdentityUser> userManager)
+    {
+        const string username = "admin";
+        const string password = "Admin123!";
+
+        var existingAdmin =
+            await userManager.FindByNameAsync(username);
+
+        if (existingAdmin != null)
+        {
+            return;
+        }
+
+        var admin = new IdentityUser
+        {
+            UserName = username
+        };
+
+        var result =
+            await userManager.CreateAsync(admin, password);
+
+        if (!result.Succeeded)
+        {
+            var errors = string.Join(
+                ", ",
+                result.Errors.Select(e => e.Description));
+
+            throw new InvalidOperationException(
+                $"Could not create administrator: {errors}");
+        }
+    }
 }

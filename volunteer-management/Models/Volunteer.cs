@@ -62,4 +62,7 @@ public class Volunteer
     // Audit fields
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
+    
+    // Opportunity matches
+    public ICollection<Match> Matches { get; set; } = new List<Match>();
 }
