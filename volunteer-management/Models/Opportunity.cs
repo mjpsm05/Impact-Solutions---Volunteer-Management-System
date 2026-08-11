@@ -12,4 +12,6 @@ public class Opportunity
     public DateTime? EndDate { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public bool IsActive { get; set; } = true;
+    
+    public ICollection<Match> Matches { get; set; } = new List<Match>();
 }

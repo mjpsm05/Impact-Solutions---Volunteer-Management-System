@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using volunteer_management.Models;
 
 namespace volunteer_management.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options)
@@ -13,6 +15,7 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Volunteer> Volunteers => Set<Volunteer>();
     public DbSet<Opportunity> Opportunities => Set<Opportunity>();
+    public DbSet<Match> Matches => Set<Match>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -78,6 +81,25 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(o => o.Name);
             entity.HasIndex(o => o.Center);
             entity.HasIndex(o => o.CreatedAt);
+        });
+        
+        modelBuilder.Entity<Match>(entity =>
+        {
+            entity.HasOne(m => m.Volunteer)
+                .WithMany(v => v.Matches)
+                .HasForeignKey(m => m.VolunteerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(m => m.Opportunity)
+                .WithMany(o => o.Matches)
+                .HasForeignKey(m => m.OpportunityId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(m => new
+            {
+                m.VolunteerId,
+                m.OpportunityId
+            }).IsUnique();
         });
     }
 }
