@@ -4,6 +4,7 @@ using volunteer_management.Models;
 
 namespace volunteer_management.Controllers;
 
+
 public class OpportunityController(ApplicationDbContext context, ILogger<OpportunityController> logger)
     : Controller
 {
@@ -30,13 +31,10 @@ public class OpportunityController(ApplicationDbContext context, ILogger<Opportu
         return RedirectToAction("Opportunities");
     }
     
-    public IActionResult Details(int id)
-    {
-        return View();
-    }
     public IActionResult Matches(int id)
     {
         return View();
     }
+    
 }
 // "Project AI Use" Item 1 -  This code was written in collaboration with OpenAI. (2025). ChatGPT [Large language model]. https://chatgpt.com/

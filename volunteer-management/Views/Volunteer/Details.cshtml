@@ -1,15 +1,16 @@
-<!-- Need a matches view model -->
- @* @model VolunteerMatchesViewModel *@
-
+@model IEnumerable<Match>
 
 @{
     ViewData["Title"] = "Volunteer Opportunity Matches";
 }
 
+@{
+    var volunteer = Model.FirstOrDefault()?.Volunteer;
+}
+
 <section class="volunteer-details-header">
     <h1>Volunteer Opportunity Matches</h1>
-    <!-- Need a volunteer property in view model -->
-    <p>Matches for @Model.Volunteer.FirstName @Model.Volunteer.LastName</p> 
+    <h2>Matches for @volunteer?.FirstName @volunteer?.LastName</h2> 
 </section>
 
 <section class="volunteer-details-content">
@@ -31,41 +32,50 @@
             </thead>
 
             <tbody>
-
             
-            @foreach (var opportunity in Model)
-            {
-                <tr>
-                    <td>
-                        @opportunity.Name
-                    </td>
+            
+                @foreach (var match in Model)
+                {
+                    <tr>
+                        <td>
+                            @*@match.Opportunity.Name*@
+                            @match.Opportunity?.Name
+                        </td>
                     
-                    <td>
-                        @opportunity.Description
-                    </td>
+                        <td>
+                            @*@match.Opportunity.Description*@
+                            @match.Opportunity?.Description
+                        </td>
                     
-                    <td>
-                        @opportunity.Center
-                    </td>
+                        <td>
+                            @*@match.Opportunity.Center*@
+                            @match.Opportunity?.Center
+                        </td>
                     
-                    <td>
-                        @opportunity.StartDate
-                    </td>
+                        <td>
+                            @*@match.Opportunity.StartDate*@
+                            @match.Opportunity?.StartDate
+                        </td>
                     
-                    <td>
-                        @opportunity.EndDate
-                    </td>
+                        <td>
+                            @*@match.Opportunity.EndDDate*@
+                            @match.Opportunity?.EndDate
+                        </td>
                     
-                    <td>
-                        @opportunity.CreatedAt
-                    </td>
+                        <td>
+                            @*@match.Opportunity.CreatedAt*@
+                            @match.Opportunity?.CreatedAt
+                        </td>
                     
-                    <td>
-                        @opportunity.IsActive
-                    </td>
+                        <td>
+                            @*@match.Opportunity.IsActive*@
+                            @match.Opportunity?.IsActive
+                        </td>
                     
-                </tr>
+                    </tr>
+                } 
             }
+            
 
             </tbody>
 

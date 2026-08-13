@@ -571,15 +571,11 @@ body {
 .opportunity-details-table td {
   padding: 14px 16px;
   text-align: left;
-  border: none;
+  border-bottom: 1px solid #ddd;
 }
 
 .opportunity-details-table th {
   font-weight: 600;
-}
-
-.opportunity-details-table tr{
-  border-bottom: 1px solid #ddd;
 }
 
 .opportunity-details-list {
