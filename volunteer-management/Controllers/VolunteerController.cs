@@ -17,13 +17,6 @@ public class VolunteerController : Controller
         _db = db;
     }
     
-    // Default view
-    /*public IActionResult Index()
-    {
-        List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
-        return View(objVolunteerList);
-    }*/
-    
     // Edit volunteer
     public IActionResult Edit(int id)
     {
