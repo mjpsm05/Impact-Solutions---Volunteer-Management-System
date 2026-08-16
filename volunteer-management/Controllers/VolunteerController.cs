@@ -50,6 +50,35 @@ public class VolunteerController : Controller
         return View(volunteer);
     }
     
+    // Display page to delete a volunteer
+    public async Task<IActionResult> Delete(int? id)
+    {
+        var volunteer = await _db.Volunteers.FindAsync(id);
+
+        if (volunteer == null)
+        {
+            return NotFound();
+        }
+        
+        return View(volunteer);
+    }
+    
+    // Delete volunteer from DB
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var volunteer = await _db.Volunteers.FindAsync(id);
+
+        if (volunteer != null)
+        {
+            _db.Volunteers.Remove(volunteer);
+            await _db.SaveChangesAsync();
+        }
+        
+        return RedirectToAction(nameof(Index));
+    }
+    
     // View and search for volunteers 
     // VVV          AI-assisted code          VVV
     public IActionResult Index(string search, string filter = "All")
