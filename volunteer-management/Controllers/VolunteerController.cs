@@ -37,10 +37,24 @@ public class VolunteerController : Controller
         return View(volunteerFromDb);
     }
     
-    // Create new volunteer
+    // Display page to add new volunteer 
     public IActionResult Add()
     {
         return View();
+    }
+    
+    // Add new volunteer to DB
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Add(Volunteer volunteer)
+    {
+        if (ModelState.IsValid)
+        {
+            _db.Volunteers.Add(volunteer);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(volunteer);
     }
     
     // View and search for volunteers 
