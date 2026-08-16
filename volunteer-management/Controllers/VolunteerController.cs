@@ -17,9 +17,10 @@ public class VolunteerController : Controller
         _db = db;
     }
     
-    // Edit volunteer
+    // Display page to edit new volunteer
     public IActionResult Edit(int id)
     {
+        // Pull volunteer by ID - Populate text fields accordingly 
         Volunteer? volunteerFromDb = _db.Volunteers.FirstOrDefault(v => v.Id == id);
 
         if (volunteerFromDb == null)
@@ -29,6 +30,37 @@ public class VolunteerController : Controller
         
         return View(volunteerFromDb);
     }
+
+    // VVV          AI-assisted code          VVV
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Volunteer volunteer)
+    {
+        if (id != volunteer.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _db.Volunteers.Update(volunteer);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_db.Volunteers.Any(v => v.Id == volunteer.Id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        return View(volunteer);
+    } // ^^^          End of AI-assisted code          ^^^
+      // "Project AI Use" Item 3 -  This code was written in collaboration with Anthropic. (2026). Claude [Large language model]. https://claude.ai/
     
     // Display page to add new volunteer 
     public IActionResult Add()
