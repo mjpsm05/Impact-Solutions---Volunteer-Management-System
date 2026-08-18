@@ -8,6 +8,8 @@ public class Match
     public Volunteer Volunteer { get; set; } = null!;
 
     public int OpportunityId { get; set; }
-    // public Opportunity Opportunity { get; set; } = null!;
-    public Opportunity Opportunity { get; set; }
+    public Opportunity Opportunity { get; set; } = null!;
+ 
+    
+    
 }

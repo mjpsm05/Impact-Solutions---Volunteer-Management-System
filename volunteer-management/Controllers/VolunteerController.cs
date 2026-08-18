@@ -17,16 +17,10 @@ public class VolunteerController : Controller
         _db = db;
     }
     
-    // Default view
-    /*public IActionResult Index()
-    {
-        List<Volunteer> objVolunteerList = _db.Volunteers.ToList(); // Fetch db data when opening Volunteer page
-        return View(objVolunteerList);
-    }*/
-    
-    // Edit volunteer
+    // Display page to edit new volunteer
     public IActionResult Edit(int id)
     {
+        // Pull volunteer by ID - Populate text fields accordingly 
         Volunteer? volunteerFromDb = _db.Volunteers.FirstOrDefault(v => v.Id == id);
 
         if (volunteerFromDb == null)
@@ -36,11 +30,85 @@ public class VolunteerController : Controller
         
         return View(volunteerFromDb);
     }
+
+    // VVV          AI-assisted code          VVV
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Volunteer volunteer)
+    {
+        if (id != volunteer.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _db.Volunteers.Update(volunteer);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_db.Volunteers.Any(v => v.Id == volunteer.Id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        return View(volunteer);
+    } // ^^^          End of AI-assisted code          ^^^
+      // "Project AI Use" Item 3 -  This code was written in collaboration with Anthropic. (2026). Claude [Large language model]. https://claude.ai/
     
-    // Create new volunteer
+    // Display page to add new volunteer 
     public IActionResult Add()
     {
         return View();
+    }
+    
+    // Add new volunteer to DB
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Add(Volunteer volunteer)
+    {
+        if (ModelState.IsValid)
+        {
+            _db.Volunteers.Add(volunteer);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(volunteer);
+    }
+    
+    // Display page to delete a volunteer
+    public async Task<IActionResult> Delete(int? id)
+    {
+        var volunteer = await _db.Volunteers.FindAsync(id);
+
+        if (volunteer == null)
+        {
+            return NotFound();
+        }
+        
+        return View(volunteer);
+    }
+    
+    // Delete volunteer from DB
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var volunteer = await _db.Volunteers.FindAsync(id);
+
+        if (volunteer != null)
+        {
+            _db.Volunteers.Remove(volunteer);
+            await _db.SaveChangesAsync();
+        }
+        
+        return RedirectToAction(nameof(Index));
     }
     
     // View and search for volunteers 
@@ -77,4 +145,12 @@ public class VolunteerController : Controller
         return View(objVolunteerList);
     } // ^^^          End of AI-assisted code          ^^^
       // "Project AI Use" Item 2 -  This code was written in collaboration with Anthropic. (2026). Claude [Large language model]. https://claude.ai/
+      
+      //Temp just so the page can show up
+      public IActionResult Matches(int id)
+      {
+          return View(new List<Match>());
+      }
 }
+
+

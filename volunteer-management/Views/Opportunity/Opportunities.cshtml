@@ -67,35 +67,34 @@
                         <td>
                             @opportunity.Name
                         </td>
-                        
+
                         <td>
                             @opportunity.Description
                         </td>
-                        
+
                         <td>
                             @opportunity.Center
                         </td>
-                        
+
                         <td>
                             @opportunity.StartDate
                         </td>
-                        
+
                         <td>
                             @opportunity.EndDate
                         </td>
-                        
+
                         <td>
                             @opportunity.CreatedAt
                         </td>
-                        
+
                         <td>
                             @opportunity.IsActive
                         </td>
 
 
-
                         <td class="opportunity-actions">
-                            <a asp-action="Details"
+                            <a asp-action="Matches"
                                asp-route-id="@opportunity.Id">
                                 View Matches
                             </a>
@@ -104,26 +103,114 @@
                                asp-route-id="@opportunity.Id">
                                 Edit
                             </a>
-                            
-                            <a asp-action="Delete"
-                               asp-route-id="@opportunity.Id"
-                               class="delete-button">
+
+                            <!-- Details button -->
+                            <button type="button"
+                                    onclick="openDetailsPopup(@opportunity.Id)">
+                                Details
+                            </button>
+
+                            <!-- Details popup for this opportunity -->
+                            <div id="detailsPopup-@opportunity.Id" class="popup">
+                                <h3>Opportunity Details</h3>
+
+                                <p>
+                                    <strong>Name:</strong>
+                                    @opportunity.Name
+                                </p>
+
+                                <p>
+                                    <strong>Description:</strong>
+                                    @opportunity.Description
+                                </p>
+
+                                <p>
+                                    <strong>Center:</strong>
+                                    @opportunity.Center
+                                </p>
+
+                                <p>
+                                    <strong>StartDate:</strong>
+                                    @opportunity.StartDate
+                                </p>
+
+                                <p>
+                                    <strong>EndDate:</strong>
+                                    @opportunity.EndDate
+                                </p>
+
+                                <p>
+                                    <strong>Created At:</strong>
+                                    @opportunity.CreatedAt
+                                </p>
+
+                                <p>
+                                    <strong>Active:</strong>
+                                    @opportunity.IsActive
+                                </p>
+
+                                <button type="button"
+                                        onclick="closeDetailsPopup(@opportunity.Id)">
+                                    Close
+                                </button>
+                            </div>
+
+                            <!-- Delete Button -->
+                            <button type="button" onclick="openDeletePopup()">
                                 Delete
-                            </a>
+                            </button>
+
+                            <!-- Delete Popup -->
+                            <div id="deletePopup" class="popup">
+                                <p>Are you sure you want to delete this opportunity?</p>
+
+                                <button type="button" onclick="closeDeletePopup()">
+                                    Cancel
+                                </button>
+
+                                <form asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@opportunity.Id"/>
+
+                                    <button type="submit">
+                                        Confirm Delete
+                                    </button>
+                                </form>
+                            </div>
+
+                            <script>
+                                function openDeletePopup() {
+                                    document.getElementById("deletePopup").classList.add("show");
+                                }
+
+                                function closeDeletePopup() {
+                                    document.getElementById("deletePopup").classList.remove("show");
+                                }
+
+                                function openDetailsPopup(opportunityId) {
+                                    document.getElementById("detailsPopup-" + opportunityId)
+                                        .classList.add("show");
+                                }
+
+                                function closeDetailsPopup(opportunityId) {
+                                    document.getElementById("detailsPopup-" + opportunityId)
+                                        .classList.remove("show");
+                                }
+                            </script>
+
                         </td>
 
                     </tr>
                 }
             }
             else
-                {
-                    <tr>
-                        <td colspan="3" class="no-results">
+            {
+                <tr>
+                    <td colspan="3" class="no-results">
                         No opportunity found.
-                        </td>
-                        </tr>
-                }
-            
+                    </td>
+                </tr>
+            }
+
             </tbody>
         </table>
     </div>
