@@ -4,14 +4,6 @@
     ViewData["Title"] = "Volunteer Opportunity Matches";
 }
 
-@{
-    var volunteer = Model.FirstOrDefault()?.Volunteer;
-}
-
-@{
-    var opportunity = Model.FirstOrDefault()?.Opportunity;
-}
-
 <section class="matches-header">
     <h1>Volunteer Opportunity Matches</h1>
 </section>
@@ -20,6 +12,8 @@
 
     <div class="matches-list">
 
+        @if (Model.Any())
+        {
         <table class="matches-table">
 
             <thead>
@@ -46,250 +40,263 @@
 
             <tbody>
             
-                @foreach (var match in Model)
-                {
-                    <tr>
-                        <td>
-                            @match.Volunteer.FirstName @match.Volunteer.LastName 
-                        </td>
+            @foreach (var match in Model)
+            {
+                <tr>
+                    <td>
+                        @match.Volunteer.FirstName @match.Volunteer.LastName
+                    </td>
+
+                    <td>
+                        @match.Volunteer.Status
+                    </td>
+
+                    <td>
+                        @match.Volunteer.SkillsInterests
+                    </td>
+
+                    <td>
+                        @match.Volunteer.Availability
+                    </td>
+
+                    <td class="matches-cell">
                         
-                        <td>
-                            @match.Volunteer.Status
-                        </td>
-                        
-                        <td>
-                            @match.Volunteer.SkillsInterests
-                        </td>
-                    
-                        <td>
-                            @match.Volunteer.Availability
-                        </td>
-                        
-                        <td class="volunteer-actions">
-                            <!-- Details button -->
+                        <!-- Details button -->
+                        <button type="button"
+                                id="detailsButton-@match.Volunteer.Id"
+                                onclick="openDetailsPopup(@match.Volunteer.Id)"
+                                class="details-button">
+                            Details
+                        </button>
+
+                        <!-- Details popup for this volunteer -->
+                        <div id="detailsPopup-@match.Volunteer.Id" class="popup details-popup">
+                        <h3>Volunteer Details</h3>
+
+                            <p>
+                                <strong>First Name:</strong>
+                                @match.Volunteer.FirstName
+                            </p>
+
+                            <p>
+                                <strong>Last Name:</strong>
+                                @match.Volunteer.LastName
+                            </p>
+
+                            <p>
+                                <strong>Preferred Centers:</strong>
+                                @match.Volunteer.PreferredCenters
+                            </p>
+
+                            <p>
+                                <strong>Skills/Interests:</strong>
+                                @match.Volunteer.SkillsInterests
+                            </p>
+
+                            <p>
+                                <strong>Availability:</strong>
+                                @match.Volunteer.Availability
+                            </p>
+
+                            <p>
+                                <strong>Address:</strong>
+                                @match.Volunteer.AddressLine1, @match.Volunteer.City, @match.Volunteer.State @match.Volunteer.PostalCode
+                            </p>
+
+                            <p>
+                                <strong>Home-Phone:</strong>
+                                @match.Volunteer.HomePhone
+                            </p>
+
+                            <p>
+                                <strong>Work-Phone:</strong>
+                                @match.Volunteer.WorkPhone
+                            </p>
+
+                            <p>
+                                <strong>Cell-Phone:</strong>
+                                @match.Volunteer.CellPhone
+                            </p>
+
+                            <p>
+                                <strong>Email:</strong>
+                                @match.Volunteer.Email
+                            </p>
+
+                            <p>
+                                <strong>Educational Background:</strong>
+                                @match.Volunteer.EducationalBackground
+                            </p>
+
+                            <p>
+                                <strong>Current Licenses:</strong>
+                                @match.Volunteer.CurrentLicenses
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Name:</strong>
+                                @match.Volunteer.EmergencyContactName
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Home-Phone:</strong>
+                                @match.Volunteer.EmergencyContactHomePhone
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Work-Phone:</strong>
+                                @match.Volunteer.EmergencyContactWorkPhone
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Email:</strong>
+                                @match.Volunteer.EmergencyContactEmail
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Address:</strong>
+                                @match.Volunteer.EmergencyContactAddress
+                            </p>
+
+                            <p>
+                                <strong>Copy of Volunteer's Drivers License on File:</strong>
+                                @match.Volunteer.HasDriversLicenseCopy
+                            </p>
+
+                            <p>
+                                <strong>Copy of Volunteer's Social Security Card on File:</strong>
+                                @match.Volunteer.HasSocialSecurityCardCopy
+                            </p>
+
+                            <p>
+                                <strong>Volunteer's Approval Status:</strong>
+                                @match.Volunteer.Status
+                            </p>
+
                             <button type="button"
-                                    onclick="openDetailsPopup(@volunteer.Id)">
-                                Details
+                                    onclick="closeDetailsPopup(@match.Volunteer.Id)"
+                                    class="close-button">
+                                Close
                             </button>
+                        </div>
+                    </td>
 
-                            <!-- Details popup for this volunteer -->
-                            <div id="detailsPopup-@volunteer.Id" class="popup">
-                                <h3>Volunteer Details</h3>
 
-                                <p>
-                                    <strong>First Name:</strong>
-                                    @volunteer.FirstName
-                                </p>
-                            
-                                <p>
-                                    <strong>Last Name:</strong>
-                                    @volunteer.LastName
-                                </p>
-                    
-                                <p>
-                                    <strong>Preferred Centers:</strong>
-                                    @volunteer.PreferredCenters
-                                </p>
+                    <td>
+                        @match.Opportunity.Name
+                    </td>
 
-                                <p>
-                                    <strong>Skills/Interests:</strong>
-                                    @volunteer.SkillsInterests
-                                </p>
-                            
-                                <p>
-                                    <strong>Availability:</strong>
-                                    @volunteer.Availability
-                                </p>
+                    <td>
+                        @match.Opportunity.Description
+                    </td>
 
-                                <p>
-                                    <strong>Address:</strong>
-                                    @volunteer.AddressLine1, @volunteer.City, @volunteer.State @volunteer.PostalCode
-                                </p>
-                            
-                                <p>
-                                    <strong>Home-Phone:</strong>
-                                    @volunteer.HomePhone
-                                </p>
-                            
-                                <p>
-                                    <strong>Work-Phone:</strong>
-                                    @volunteer.WorkPhone
-                                </p>
-                            
-                                <p>
-                                    <strong>Cell-Phone:</strong>
-                                    @volunteer.CellPhone
-                                </p>
-                            
-                                <p>
-                                    <strong>Email:</strong>
-                                    @volunteer.Email
-                                </p>
-                            
-                                <p>
-                                    <strong>Educational Background:</strong>
-                                    @volunteer.EducationalBackground
-                                </p>
-                            
-                                <p>
-                                    <strong>Current Licenses:</strong>
-                                    @volunteer.CurrentLicenses
-                                </p>
-                            
-                                <p>
-                                    <strong>Emergency Contact Name:</strong>
-                                    @volunteer.EmergencyContactName
-                                </p>
-                            
-                                <p>
-                                    <strong>Emergency Contact Home-Phone:</strong>
-                                    @volunteer.EmergencyContactHomePhone
-                                </p>
+                    <td>
+                        @match.Opportunity.Center
+                    </td>
 
-                                <p>
-                                    <strong>Emergency Contact Work-Phone:</strong>
-                                    @volunteer.EmergencyContactWorkPhone
-                                </p>
-                            
-                                <p>
-                                    <strong>Emergency Contact Email:</strong>
-                                    @volunteer.EmergencyContactEmail
-                                </p>
-                            
-                                <p>
-                                    <strong>Emergency Contact Address:</strong>
-                                    @volunteer.EmergencyContactAddress
-                                </p>
-                            
-                                <p>
-                                    <strong>Copy of Volunteer's Drivers License on File:</strong>
-                                    @volunteer.HasDriversLicenseCopy
-                                </p>
-                            
-                                <p>
-                                    <strong>Copy of Volunteer's Social Security Card on File:</strong>
-                                    @volunteer.HasSocialSecurityCardCopy
-                                </p>
-                            
-                                <p>
-                                    <strong>Volunteer's Approval Status:</strong>
-                                    @volunteer.Status
-                                </p>
+                    <td>
+                        @match.Opportunity.EndDate
+                    </td>
 
-                                <button type="button"
-                                        onclick="closeDetailsPopup(@volunteer.Id)">
-                                    Close
-                                </button>
-                            </div>
-                        </td>
-   
+                    <td>
+                        @match.Opportunity.IsActive
+                    </td>
+
+                    <td>
+                        @match.Opportunity.IsActive
+                    </td>
+
+                    <td class="opportunity-actions">
                         
-                        <td>
-                            @match.Opportunity.Name
-                        </td>
-                        
-                        <td>
-                            @match.Opportunity.Description
-                        </td>
-                    
-                        <td>
-                            @match.Opportunity.Center
-                        </td>
-                    
-                        <td>
-                           @*@match.Opportunity.EndDDate*@
-                        </td>
-                    
-                        <td>
-                            @match.Opportunity.IsActive
-                        </td>
-                        
-                        <td>
-                            @match.Opportunity.IsActive
-                        </td>
-  
-                        <td class="opportunity-actions">
-                            <!-- Details button -->
+                        <!-- Details button -->
+                        <button type="button"
+                                id="detailsButton-@match.Opportunity.Id"
+                                onclick="openDetailsPopup(@match.Opportunity.Id)"
+                                class="details-button">
+                            Details
+                        </button>
+
+                        <!-- Details popup for this volunteer -->
+                        <div id="detailsPopup-@match.Opportunity.Id" class="popup details-popup">
+                        <h3>Opportunity Details</h3>
+
+                            <p>
+                                <strong>Name:</strong>
+                                @match.Opportunity.Name
+                            </p>
+
+                            <p>
+                                <strong>Description:</strong>
+                                @match.Opportunity.Description
+                            </p>
+
+                            <p>
+                                <strong>Center:</strong>
+                                @match.Opportunity.Center
+                            </p>
+
+                            <p>
+                                <strong>StartDate:</strong>
+                                @match.Opportunity.StartDate
+                            </p>
+
+                            <p>
+                                <strong>EndDate:</strong>
+                                @match.Opportunity.EndDate
+                            </p>
+
+                            <p>
+                                <strong>Created At:</strong>
+                                @match.Opportunity.CreatedAt
+                            </p>
+
+                            <p>
+                                <strong>Active:</strong>
+                                @match.Opportunity.IsActive
+                            </p>
+
                             <button type="button"
-                                    onclick="openDetailsPopup(@opportunity.Id)">
-                                Details
+                                    onclick="closeDetailsPopup(@match.Opportunity.Id)"
+                                    class="close-button">
+                                Close
                             </button>
+                        </div>
+                    </td>
 
-                            <!-- Details popup for this opportunity -->
-                            <div id="detailsPopup-@opportunity.Id" class="popup">
-                                <h3>Opportunity Details</h3>
 
-                                <p>
-                                    <strong>Name:</strong>
-                                    @opportunity.Name
-                                </p>
+                </tr>
+            }
 
-                                <p>
-                                    <strong>Description:</strong>
-                                    @opportunity.Description
-                                </p>
-
-                                <p>
-                                    <strong>Center:</strong>
-                                    @opportunity.Center
-                                </p>
-
-                                <p>
-                                    <strong>StartDate:</strong>
-                                    @opportunity.StartDate
-                                </p>
-
-                                <p>
-                                    <strong>EndDate:</strong>
-                                    @opportunity.EndDate
-                                </p>
-
-                                <p>
-                                    <strong>Created At:</strong>
-                                    @opportunity.CreatedAt
-                                </p>
-
-                                <p>
-                                    <strong>Active:</strong>
-                                    @opportunity.IsActive
-                                </p>
-
-                                <button type="button"
-                                        onclick="closeDetailsPopup(@opportunity.Id)">
-                                    Close
-                                </button>
-                            </div>
-                        </td>
-                        
-                        
-                    </tr>
-                } 
-            
-                <script>
+            <script>
                     function openDetailsPopup(volunteerId) {
-                        document.getElementById("detailsPopup-" + volunteerId)
-                            .classList.add("show");
+                        document.getElementById("detailsPopup-" + volunteerId).classList.add("show");
+                        document.getElementById("detailsButton-" + volunteerId).classList.add("hidden");
                     }
                 
                     function closeDetailsPopup(volunteerId) {
-                        document.getElementById("detailsPopup-" + volunteerId)
-                            .classList.remove("show");
+                        document.getElementById("detailsPopup-" + volunteerId).classList.remove("show");
+                        document.getElementById("detailsButton-" + volunteerId).classList.remove("hidden");
                     }
 
                     function openDetailsPopup(opportunityId) {
-                        document.getElementById("detailsPopup-" + opportunityId)
-                            .classList.add("show");
+                        document.getElementById("detailsPopup-" + opportunityId).classList.add("show");
+                        document.getElementById("detailsButton-" + opportunityId).classList.add("hidden");
                     }
 
                     function closeDetailsPopup(opportunityId) {
-                        document.getElementById("detailsPopup-" + opportunityId)
-                            .classList.remove("show");
+                        document.getElementById("detailsPopup-" + opportunityId).classList.remove("show");
+                        document.getElementById("detailsButton-" + opportunityId).classList.remove("hidden");
                     }
                 </script>
 
-                </tbody>
+            </tbody>
 
         </table>
+        }
+        else
+        {
+        <p>No matches found.</p>
+        }
 
     </div>
     

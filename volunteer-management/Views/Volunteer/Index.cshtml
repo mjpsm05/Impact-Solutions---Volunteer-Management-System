@@ -28,7 +28,8 @@
             <option value="All" selected>All</option>
         </select>
         
-        <button type="submit">
+        <button type="submit"
+                class="filter-button">
             Apply Filter
         </button>
         </div>
@@ -39,7 +40,8 @@
                         name="search"
                         placeholder="Search Volunteers" />
 
-                    <button type="submit">
+                    <button type="submit"
+                            class="search-button">
                         Search
                     </button>
                     </div>
@@ -51,13 +53,18 @@
         {
             @foreach (var volunteer in Model)
             {
-                <div class="card">
+                <div class="volunteer-card">
                     <div class="card-header">
                         <h5><strong>Name: </strong>@volunteer.FirstName @volunteer.LastName</h5>
                     </div>
 
                     <div class="card-body">
                         <p>Status: @volunteer.Status</p>
+                        <p>Preferred Centers: @volunteer.PreferredCenters</p>
+                        <p>Skills/Interests: @volunteer.SkillsInterests</p>
+                        <p>Availability: @volunteer.Availability</p>
+                        <p>Cell-Phone: @volunteer.CellPhone</p>
+                        <p>Email: @volunteer.Email</p>
                     </div>
 
                     <div class="card-volunteer-actions">
@@ -73,12 +80,14 @@
 
                         <!-- Details button -->
                         <button type="button"
-                                onclick="openDetailsPopup(@volunteer.Id)">
+                                id="detailsButton-@volunteer.Id"
+                                onclick="openDetailsPopup(@volunteer.Id)"
+                                class="details-button">
                             Details
                         </button>
 
                         <!-- Details popup for this volunteer -->
-                        <div id="detailsPopup-@volunteer.Id" class="popup">
+                        <div id="detailsPopup-@volunteer.Id" class="popup details-popup">
                             <h3>Volunteer Details</h3>
 
                             <p>
@@ -183,20 +192,21 @@
                             </p>
 
                             <button type="button"
-                                    onclick="closeDetailsPopup(@volunteer.Id)">
+                                    onclick="closeDetailsPopup(@volunteer.Id)"
+                                    class="close-button">
                                 Close
                             </button>
                         </div>
 
                         <script>
                             function openDetailsPopup(volunteerId) {
-                                document.getElementById("detailsPopup-" + volunteerId)
-                                    .classList.add("show");
+                                document.getElementById("detailsPopup-" + volunteerId).classList.add("show");
+                                document.getElementById("detailsButton-" + volunteerId).classList.add("hidden");
                             }
 
                             function closeDetailsPopup(volunteerId) {
-                                document.getElementById("detailsPopup-" + volunteerId)
-                                    .classList.remove("show");
+                                document.getElementById("detailsPopup-" + volunteerId).classList.remove("show");
+                                document.getElementById("detailsButton-" + volunteerId).classList.remove("hidden");
                             }
                         </script>
 

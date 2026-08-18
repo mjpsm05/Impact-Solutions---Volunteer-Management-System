@@ -351,12 +351,12 @@ body {
 /* ===================================
    Volunteer Index Actions
 =================================== */
-.volunteer-actions {
+.card-volunteer-actions {
   display: flex;
   gap: 10px;
 }
 
-.volunteer-actions a {
+.card-volunteer-actions a {
   padding: 6px 12px;
   text-decoration: none;
 }
@@ -518,12 +518,12 @@ body {
 /* ===================================
    Opportunity Opportunities Actions
 =================================== */
-.opportunity-actions {
+.card-opportunity-actions {
   display: flex;
   gap: 10px;
 }
 
-.opportunity-actions a {
+.card-opportunity-actions a {
   padding: 6px 12px;
   text-decoration: none;
 }
@@ -583,23 +583,93 @@ body {
   display: block;
 }
 
-/* ===================================
-   Volunteer Profile Cards
-=================================== */
-.card-container {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 16px;
+.delete-popup {
+  width: 800px;
+  max-width: 90%;
+  padding: 25px;
+  box-sizing: border-box;
 }
 
-.card {
-  /* flex: 1 1 250px; */
+.delete-button {
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.delete-button.hidden {
+  display: none;
+}
+
+/* ===================================
+   Volunteer Details Popup
+=================================== */
+.volunteer-card {
+  flex: 0 1 250px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  min-width: 450px;
+  
+  position: relative;
+}
+
+/* ===================================
+   Matches Details Popup
+=================================== */
+.matches-cell{
+  position: relative;
+}
+
+/* ===================================
+   Details Popup
+=================================== */
+.details-popup {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 15px;
+
+  width: 350px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.details-popup.show {
+  display: block;
+}
+
+.details-button.hidden {
+  display: none;
+}
+
+/* ===================================
+   Opportunity Card Layout
+=================================== */
+.opportunity-card {
   flex: 0 1 250px;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-sizing: border-box;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  min-width: 450px;
+}
+
+/* ===================================
+   Volunteer + Opportunity Cards
+=================================== */
+.card-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 16px;
 }
 
 .card-header {
@@ -624,7 +694,6 @@ body {
   color: #666;
   width: 100%; 
 }
-
 
 /* ===================================
    Matches Table
