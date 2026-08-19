@@ -1,4 +1,3 @@
-
 @model List<Volunteer> 
 
 @{
@@ -29,7 +28,8 @@
             <option value="All" selected>All</option>
         </select>
         
-        <button type="submit">
+        <button type="submit"
+                class="filter-button">
             Apply Filter
         </button>
         </div>
@@ -40,72 +40,187 @@
                         name="search"
                         placeholder="Search Volunteers" />
 
-                    <button type="submit">
+                    <button type="submit"
+                            class="search-button">
                         Search
                     </button>
                     </div>
                 
             </form>
-    <div class="volunteer-list">
-        <table class="volunteer-table">
-
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Actions</th>
-                <th></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            
-            @if (Model != null && Model.Any())
+       
+    <div class="card-container">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var volunteer in Model)
             {
-                @foreach (var volunteer in Model)
-                {
-                    <tr>
-                        <td>
-                            <p>@volunteer.FirstName @volunteer.LastName</p>
-                        </td>
+                <div class="volunteer-card">
+                    <div class="card-header">
+                        <h5><strong>Name: </strong>@volunteer.FirstName @volunteer.LastName</h5>
+                    </div>
 
-                        <td>
-                            <p>@volunteer.Status</p>
-                        </td>
+                    <div class="card-body">
+                        <p>Status: @volunteer.Status</p>
+                        <p>Preferred Centers: @volunteer.PreferredCenters</p>
+                        <p>Skills/Interests: @volunteer.SkillsInterests</p>
+                        <p>Availability: @volunteer.Availability</p>
+                        <p>Cell-Phone: @volunteer.CellPhone</p>
+                        <p>Email: @volunteer.Email</p>
+                    </div>
+
+                    <div class="card-volunteer-actions">
+                        <a asp-action="Matches"
+                           asp-route-id="@volunteer.Id">
+                            View Matches
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@volunteer.Id">
+                            Edit
+                        </a>
+
+                        <!-- Details button -->
+                        <button type="button"
+                                id="detailsButton-@volunteer.Id"
+                                onclick="openDetailsPopup(@volunteer.Id)"
+                                class="details-button">
+                            Details
+                        </button>
+
+                        <!-- Details popup for this volunteer -->
+                        <div id="detailsPopup-@volunteer.Id" class="popup details-popup">
+                            <h3>Volunteer Details</h3>
+
+                            <p>
+                                <strong>First Name:</strong>
+                                @volunteer.FirstName
+                            </p>
+
+                            <p>
+                                <strong>Last Name:</strong>
+                                @volunteer.LastName
+                            </p>
 
 
-                        <td class="volunteer-actions">
-                            <a asp-action="Details"
-                               asp-route-id="@volunteer.Id">
-                                View Matches
-                            </a>
+                            <p>
+                                <strong>Preferred Centers:</strong>
+                                @volunteer.PreferredCenters
+                            </p>
 
-                            <a asp-action="Edit"
-                               asp-route-id="@volunteer.Id">
-                                Edit
-                            </a>
-                            
-                            <a asp-action="Delete"
-                               asp-route-id="@volunteer.Id"
-                               class="text-danger">
-                                Delete
-                            </a>
-                        </td>
+                            <p>
+                                <strong>Skills/Interests:</strong>
+                                @volunteer.SkillsInterests
+                            </p>
 
-                    </tr>
-                }
+                            <p>
+                                <strong>Availability:</strong>
+                                @volunteer.Availability
+                            </p>
+
+                            <p>
+                                <strong>Address:</strong>
+                                @volunteer.AddressLine1, @volunteer.City, @volunteer.State @volunteer.PostalCode
+                            </p>
+
+                            <p>
+                                <strong>Home-Phone:</strong>
+                                @volunteer.HomePhone
+                            </p>
+
+                            <p>
+                                <strong>Work-Phone:</strong>
+                                @volunteer.WorkPhone
+                            </p>
+
+                            <p>
+                                <strong>Cell-Phone:</strong>
+                                @volunteer.CellPhone
+                            </p>
+
+                            <p>
+                                <strong>Email:</strong>
+                                @volunteer.Email
+                            </p>
+
+                            <p>
+                                <strong>Educational Background:</strong>
+                                @volunteer.EducationalBackground
+                            </p>
+
+                            <p>
+                                <strong>Current Licenses:</strong>
+                                @volunteer.CurrentLicenses
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Name:</strong>
+                                @volunteer.EmergencyContactName
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Home-Phone:</strong>
+                                @volunteer.EmergencyContactHomePhone
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Work-Phone:</strong>
+                                @volunteer.EmergencyContactWorkPhone
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Email:</strong>
+                                @volunteer.EmergencyContactEmail
+                            </p>
+
+                            <p>
+                                <strong>Emergency Contact Address:</strong>
+                                @volunteer.EmergencyContactAddress
+                            </p>
+
+                            <p>
+                                <strong>Copy of Volunteer's Drivers License on File:</strong>
+                                @volunteer.HasDriversLicenseCopy
+                            </p>
+
+                            <p>
+                                <strong>Copy of Volunteer's Social Security Card on File:</strong>
+                                @volunteer.HasSocialSecurityCardCopy
+                            </p>
+
+                            <p>
+                                <strong>Volunteer's Approval Status:</strong>
+                                @volunteer.Status
+                            </p>
+
+                            <button type="button"
+                                    onclick="closeDetailsPopup(@volunteer.Id)"
+                                    class="close-button">
+                                Close
+                            </button>
+                        </div>
+
+                        <script>
+                            function openDetailsPopup(volunteerId) {
+                                document.getElementById("detailsPopup-" + volunteerId).classList.add("show");
+                                document.getElementById("detailsButton-" + volunteerId).classList.add("hidden");
+                            }
+
+                            function closeDetailsPopup(volunteerId) {
+                                document.getElementById("detailsPopup-" + volunteerId).classList.remove("show");
+                                document.getElementById("detailsButton-" + volunteerId).classList.remove("hidden");
+                            }
+                        </script>
+
+                    </div>
+                </div>
             }
-            else
-                {
-                    <tr>
-                        <td colspan="3" class="no-results">
-                        No volunteers found.
-                        </td>
-                        </tr>
-                }
-            
-            </tbody>
-        </table>
+        }
+                        else
+                        {
+                            <div class ="no-results" >
+                                No volunteers found.
+                                </div>
+                        }
     </div>
-</section>
+ </section>
+
 

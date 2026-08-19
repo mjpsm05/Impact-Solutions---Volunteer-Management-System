@@ -145,4 +145,12 @@ public class VolunteerController : Controller
         return View(objVolunteerList);
     } // ^^^          End of AI-assisted code          ^^^
       // "Project AI Use" Item 2 -  This code was written in collaboration with Anthropic. (2026). Claude [Large language model]. https://claude.ai/
+      
+      //Temp just so the page can show up
+      public IActionResult Matches(int id)
+      {
+          return View(new List<Match>());
+      }
 }
+
+
